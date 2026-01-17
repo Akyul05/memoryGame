@@ -1,0 +1,12 @@
+/frontend/src
+├── components/
+│   ├── Board.js
+│   ├── Card.js
+│   ├── GameOver.js
+│   └── ScoreBoard.js
+├── hooks/
+│   └── useMemoryGame.js
+├── styles/            
+│   └── index.css       
+├── App.js
+└── index.js

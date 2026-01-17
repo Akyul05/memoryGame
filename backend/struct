@@ -1,0 +1,11 @@
+/backend
+├── app.js              
+├── config/
+│   └── db.js            
+├── controllers/
+│   └── scoreController.js 
+├── models/
+│   └── Score.js         
+├── routes/
+│   └── scores.js       
+└── .env                 
