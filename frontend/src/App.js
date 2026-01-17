@@ -87,7 +87,7 @@ function App() {
                         </div>
                         <div className="stats">
                             <p>Coups: <strong>{turns}</strong></p>
-                            <button className="restart" onClick={shuffleCards}>🔄 Recommencer</button>
+                            <button className="restart" onClick={shuffleCards}>Recommencer</button>
                         </div>
                     </header>
                     
