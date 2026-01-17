@@ -1,4 +1,4 @@
-// Ce fichier contient la logique du jeu, App.js ne s'occupe que de l'affichage
+// Ce fichier contient la logique du jeu App.js ne s'occupe que de l'affichage
 import { useState, useEffect } from 'react';
 
 const EMOJIS = ["🐶", "🐱", "🐭", "🐹", "🦊", "🐻", "🐼", "🐸"];
@@ -9,7 +9,7 @@ export const useMemoryGame = () => {
   const [choiceOne, setChoice1] = useState(null);
   const [choiceTwo, setChoice2] = useState(null);
   const [disabled, setDisabled] = useState(false);
-  const [isWon, setIsWon] = useState(false); // Note: J'ai renommé setIsWin en setIsWon pour la cohérence interne
+  const [isWon, setIsWon] = useState(false); 
 
   // Mélanger les cartes
   const shuffleCards = () => {
@@ -65,6 +65,6 @@ export const useMemoryGame = () => {
     shuffleCards();
   }, []);
 
-  // C'est ICI que ça se joue : on exporte bien choiceOne, choiceTwo et isWon
+ 
   return { cards, turns, handleChoice, choiceOne, choiceTwo, disabled, isWon, shuffleCards };
 };

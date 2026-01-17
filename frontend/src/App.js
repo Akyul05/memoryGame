@@ -7,7 +7,6 @@ import './styles.css';
 import axios from 'axios';
 
 function App() {
-    // CORRECTION MAJEURE ICI : On récupère choiceOne, choiceTwo et isWon
     const { 
         cards, 
         turns, 
@@ -27,9 +26,12 @@ function App() {
             setLoading(true);
             const response = await axios.get('http://localhost:5000/scores');
             console.log("données reçues du back :", response.data);
-            
-            // Sécurité : on s'assure que c'est bien un tableau
-            setScores(Array.isArray(response.data) ? response.data : []);
+        
+            if (response.data && response.data.data) {
+                setScores(response.data.data);
+            } else {
+                setScores([]);
+            }
         } catch (error) {
             console.error("Erreur :", error);
             setScores([]);
@@ -61,8 +63,7 @@ function App() {
                     <button className="restart" onClick={shuffleCards}>Recommencer</button>
                 </div>
             </header>
-            
-            {/* CORRECTION ICI : On passe les bonnes props (choiceOne={choiceOne}) au Board */}
+
             <Board 
                 cards={cards}
                 handleChoice={handleChoice}
@@ -70,8 +71,6 @@ function App() {
                 choiceTwo={choiceTwo}
                 disabled={disabled}
             />
-            
-            {/* CORRECTION ICI : On utilise isWon */}
             {isWon && <GameOver turns={turns} onSave={handleSaveScore} />}
             
             <div className="scoreboard">
