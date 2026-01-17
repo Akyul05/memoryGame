@@ -1,27 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const Card = ({ card, handleChoice, flipped, disabled }) => {
+export default function Card({ card, handleChoice, flipped, disabled }) {
+  
   const handleClick = () => {
-    if (!disabled && !flipped) {
+    if (!disabled) {
       handleChoice(card);
     }
   };
 
   return (
-    <div className="card-scene">
-      <div className={`card ${flipped ? "flipped" : ""}`} onClick={handleClick}>
-        <div className="card-face card-front">❓</div>
-        <div className="card-face card-back">{card.emoji}</div>
+    <div className={`card ${flipped ? "flipped" : ""}`} onClick={handleClick}>
+      <div className="front">
+        {card.emoji}
       </div>
+      <div className="back"></div>
     </div>
   );
-};
-Card.propTypes = {
-  card: PropTypes.object.isRequired,
-  handleChoice: PropTypes.func.isRequired,
-  flipped: PropTypes.bool.isRequired,
-  disabled: PropTypes.bool.isRequired
-};
-
-export default Card;
+}

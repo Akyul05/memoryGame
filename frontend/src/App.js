@@ -25,7 +25,6 @@ function App() {
         try {
             setLoading(true);
             const response = await axios.get('http://localhost:5000/scores');
-            console.log("données reçues du back :", response.data);
         
             if (response.data && response.data.data) {
                 setScores(response.data.data);
@@ -73,8 +72,8 @@ function App() {
             />
             {isWon && <GameOver turns={turns} onSave={handleSaveScore} />}
             
-            <div className="scoreboard">
-                <h2>Classement</h2>
+            <div className="scoreboard-container">
+                
                 {loading ? <p>Chargement...</p> : <ScoreBoard scores={scores} />}
             </div>
         </div>
