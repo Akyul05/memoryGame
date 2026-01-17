@@ -1,4 +1,4 @@
-//ce fichier contiens la logique du jeu , app.js ne s'occupe que de l'affichage
+// Ce fichier contient la logique du jeu, App.js ne s'occupe que de l'affichage
 import { useState, useEffect } from 'react';
 
 const EMOJIS = ["🐶", "🐱", "🐭", "🐹", "🦊", "🐻", "🐼", "🐸"];
@@ -6,12 +6,12 @@ const EMOJIS = ["🐶", "🐱", "🐭", "🐹", "🦊", "🐻", "🐼", "🐸"];
 export const useMemoryGame = () => {
   const [cards, setCards] = useState([]);
   const [turns, setTurns] = useState(0);
-  const [choice1, setChoice1] = useState(null);
-  const [choice2, setChoice2] = useState(null);
+  const [choiceOne, setChoice1] = useState(null);
+  const [choiceTwo, setChoice2] = useState(null);
   const [disabled, setDisabled] = useState(false);
-  const [isWin, setIsWin] = useState(false);
+  const [isWon, setIsWon] = useState(false); // Note: J'ai renommé setIsWin en setIsWon pour la cohérence interne
 
-  // mellanger les cartes
+  // Mélanger les cartes
   const shuffleCards = () => {
     const shuffled = [...EMOJIS, ...EMOJIS]
       .sort(() => Math.random() - 0.5)
@@ -21,36 +21,36 @@ export const useMemoryGame = () => {
     setChoice2(null);
     setCards(shuffled);
     setTurns(0);
-    setIsWin(false);
+    setIsWon(false);
     setDisabled(false);
   };
 
-  // choix des cartes
+  // Choix des cartes
   const handleChoice = (card) => {
     if(!disabled) {
-      choice1 ? setChoice2(card) : setChoice1(card);
+      choiceOne ? setChoice2(card) : setChoice1(card);
     }
   };
 
   // Comparer 
   useEffect(() => {
-    if (choice1 && choice2) {
+    if (choiceOne && choiceTwo) {
       setDisabled(true);
-      if (choice1.emoji === choice2.emoji) {
+      if (choiceOne.emoji === choiceTwo.emoji) {
         setCards(prev => prev.map(card => 
-          card.emoji === choice1.emoji ? { ...card, matched: true } : card
+          card.emoji === choiceOne.emoji ? { ...card, matched: true } : card
         ));
         resetTurn();
       } else {
         setTimeout(() => resetTurn(), 1000);
       }
     }
-  }, [choice1, choice2]);
+  }, [choiceOne, choiceTwo]);
 
   // Vérifier victoire
   useEffect(() => {
     if (cards.length > 0 && cards.every(c => c.matched)) {
-      setIsWin(true);
+      setIsWon(true);
     }
   }, [cards]);
 
@@ -65,5 +65,6 @@ export const useMemoryGame = () => {
     shuffleCards();
   }, []);
 
-  return { cards, turns, handleChoice, choice1, choice2, disabled, isWin, shuffleCards };
+  // C'est ICI que ça se joue : on exporte bien choiceOne, choiceTwo et isWon
+  return { cards, turns, handleChoice, choiceOne, choiceTwo, disabled, isWon, shuffleCards };
 };
