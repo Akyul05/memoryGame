@@ -157,11 +157,11 @@ header h1 {
 
 .modal-content {
   background: white; 
-  color: #1e1b4b;
+  color: #3f3d61;
   padding: 40px;
   border-radius: 20px;
   text-align: center;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
   max-width: 400px;
   width: 90%;
   animation: slideUp 0.4s ease;
@@ -183,7 +183,7 @@ header h1 {
   outline: none;
   transition: border-color 0.3s;
   box-sizing: border-box; 
-
+}
 .modal-content input:focus {
   border-color: var(--secondary);
 }
@@ -233,7 +233,7 @@ header h1 {
 
 .score-item:hover {
   transform: scale(1.02);
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(101, 44, 44, 0.219);
 }
 
 .score-rank {
@@ -244,10 +244,23 @@ header h1 {
 }
 
 .score-pseudo {
-  flex-grow: 1;
-  text-align: left;
-  font-weight: 500;
-  padding-left: 10px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: var(--text-light);
+  line-height: 1.2;
+}
+.score-info {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: flex-start; 
+  flex-grow: 1; 
+  padding-left: 15px; 
+}
+.score-date {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 4px;
 }
 
 .score-value {
@@ -258,6 +271,103 @@ header h1 {
   font-weight: bold;
 }
 
+/* --- Écran d'accueil --- */
+.welcome-screen {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 40px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  margin-bottom: 30px;
+  animation: fadeIn 0.5s ease;
+}
+
+.welcome-screen h1 {
+  font-size: 3.5rem;
+  margin: 0;
+  background: linear-gradient(to right, #f472b6, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.welcome-screen p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  opacity: 0.9;
+}
+
+.buttons-container {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-level {
+  padding: 15px 30px;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  color: white;
+}
+
+.btn-level:hover { transform: translateY(-3px); }
+
+.btn-level.easy { background: linear-gradient(135deg, #34d399, #059669); box-shadow: 0 4px 15px rgba(52, 211, 153, 0.4); }
+.btn-level.medium { background: linear-gradient(135deg, #60a5fa, #2563eb); box-shadow: 0 4px 15px rgba(96, 165, 250, 0.4); }
+.btn-level.hard { background: linear-gradient(135deg, #f87171, #dc2626); box-shadow: 0 4px 15px rgba(248, 113, 113, 0.4); }
+
+.btn-back {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  position: absolute;
+  left: 20px;
+  top: 20px;
+}
+
+.header-top {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+
+.game-board {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.level-6 .card-grid {
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 500px;
+}
+
+
+.level-8 .card-grid {
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 600px;
+}
+
+
+.level-12 .card-grid {
+  grid-template-columns: repeat(6, 1fr);
+  max-width: 800px;
+}
+
+
+@media (max-width: 600px) {
+  .level-12 .card-grid {
+    grid-template-columns: repeat(4, 1fr); /* On repasse en 4 colonnes sur mobile */
+  }
+}
 
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }}
+@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }

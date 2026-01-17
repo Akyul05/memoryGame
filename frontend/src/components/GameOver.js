@@ -22,9 +22,9 @@ const GameOver = ({ turns, onSave }) => {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <h2>🎉 Victoire !</h2>
+        <h2> Victoire !</h2>
         <p>Tu as gagné en <strong>{turns}</strong> coups.</p>
-        <p style={{fontSize: '0.9rem', color: '#666', marginTop: '-10px'}}>Entre ton nom pour la gloire éternelle</p>
+        <p style={{fontSize: '0.9rem', color: '#666', marginTop: '-10px'}}>Entre ton nom</p>
         
         <form onSubmit={handleSubmit}>
           <input 
@@ -37,7 +37,7 @@ const GameOver = ({ turns, onSave }) => {
             autoFocus
           />
           <button type="submit" disabled={isSaving}>
-            {isSaving ? "Sauvegarde..." : "Enregistrer mon score 🚀"}
+            {isSaving ? "Sauvegarde..." : "Enregistrer mon score "}
           </button>
         </form>
       </div>

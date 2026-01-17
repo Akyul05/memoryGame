@@ -1,9 +1,10 @@
 // Ce fichier contient la logique du jeu App.js ne s'occupe que de l'affichage
-import { useState, useEffect } from 'react';
+import { useState, useEffect ,useCallback} from 'react';
 
-const EMOJIS = ["🐶", "🐱", "🐭", "🐹", "🦊", "🐻", "🐼", "🐸"];
+const EMOJIS = ["🐶", "🐱", "🐭", "🐹", "🦊", "🐻", "🐼", "🐸",
+  "🐯", "🦁", "🐮", "🐷", "🐙", "🐵", "🦄", "🐞"];
 
-export const useMemoryGame = () => {
+export const useMemoryGame = (nbPairs) => {
   const [cards, setCards] = useState([]);
   const [turns, setTurns] = useState(0);
   const [choiceOne, setChoice1] = useState(null);
@@ -12,8 +13,9 @@ export const useMemoryGame = () => {
   const [isWon, setIsWon] = useState(false); 
 
   // Mélanger les cartes
-  const shuffleCards = () => {
-    const shuffled = [...EMOJIS, ...EMOJIS]
+  const shuffleCards = useCallback(() => {
+    const selectedEmojis = EMOJIS.slice(0, nbPairs);
+    const shuffled = [...selectedEmojis, ...selectedEmojis]
       .sort(() => Math.random() - 0.5)
       .map((emoji) => ({ emoji, id: Math.random(), matched: false }));
 
@@ -23,7 +25,7 @@ export const useMemoryGame = () => {
     setTurns(0);
     setIsWon(false);
     setDisabled(false);
-  };
+  }, [nbPairs]);
 
   // Choix des cartes
   const handleChoice = (card) => {
@@ -63,7 +65,7 @@ export const useMemoryGame = () => {
 
   useEffect(() => {
     shuffleCards();
-  }, []);
+  }, [shuffleCards]);
 
  
   return { cards, turns, handleChoice, choiceOne, choiceTwo, disabled, isWon, shuffleCards };
