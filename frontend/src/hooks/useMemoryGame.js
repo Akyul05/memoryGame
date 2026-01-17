@@ -6,10 +6,10 @@ const EMOJIS = ["🐶", "🐱", "🐭", "🐹", "🦊", "🐻", "🐼", "🐸"];
 export const useMemoryGame = () => {
   const [cards, setCards] = useState([]);
   const [turns, setTurns] = useState(0);
-  const [choiceOne, setChoice1] = useState(null);
-  const [choiceTwo, setChoice2] = useState(null);
+  const [choice1, setChoice1] = useState(null);
+  const [choice2, setChoice2] = useState(null);
   const [disabled, setDisabled] = useState(false);
-  const [isWon, setIsWin] = useState(false);
+  const [isWin, setIsWin] = useState(false);
 
   // mellanger les cartes
   const shuffleCards = () => {
@@ -28,24 +28,24 @@ export const useMemoryGame = () => {
   // choix des cartes
   const handleChoice = (card) => {
     if(!disabled) {
-      choiceOne ? setChoice2(card) : setChoice1(card);
+      choice1 ? setChoice2(card) : setChoice1(card);
     }
   };
 
   // Comparer 
   useEffect(() => {
-    if (choiceOne && choiceTwo) {
+    if (choice1 && choice2) {
       setDisabled(true);
-      if (choiceOne.emoji === choiceTwo.emoji) {
+      if (choice1.emoji === choice2.emoji) {
         setCards(prev => prev.map(card => 
-          card.emoji === choiceOne.emoji ? { ...card, matched: true } : card
+          card.emoji === choice1.emoji ? { ...card, matched: true } : card
         ));
         resetTurn();
       } else {
         setTimeout(() => resetTurn(), 1000);
       }
     }
-  }, [choiceOne, choiceTwo]);
+  }, [choice1, choice2]);
 
   // Vérifier victoire
   useEffect(() => {
@@ -65,5 +65,5 @@ export const useMemoryGame = () => {
     shuffleCards();
   }, []);
 
-  return { cards, turns, handleChoice, choiceOne, choiceTwo, disabled, isWon, shuffleCards };
+  return { cards, turns, handleChoice, choice1, choice2, disabled, isWin, shuffleCards };
 };
