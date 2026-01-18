@@ -16,10 +16,9 @@ Il faut lancer le Backend et le Frontend dans deux terminaux séparés.
 Ouvrez un terminal et tapez :
 
 cd backend
-npm install
-npm start
+npx nodemon app.js
 
-#### Étape 1 : Lancer le Serveur (Backend)
+#### Étape 1 : Lancer le Serveur (frontend)
 
 ouvrez un deuxieme terminal et tapez : 
 cd frontend
